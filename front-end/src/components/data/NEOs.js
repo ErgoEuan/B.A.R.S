@@ -8,11 +8,11 @@ class NEOs extends Component {
         console.log(this.props.neos)
         // return (
         //     <div>
-        //         Cum
+        //         {this.props.neos.map((neo, i) => <div key={i}>{neo.id}</div>)}
         //     </div>  
         // );
-        return this.props.neos.map((neo) => (
-            <NEO key={neo.id} neo={neo}/>
+        return this.props.neos.map((neo, i) => (
+            <NEO key={i} neo={neo}/>
         ));
     }
 }
