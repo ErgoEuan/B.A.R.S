@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
+import NEO from './NEO';
 // import PropTypes from 'prop-types';
 
 class NEOs extends Component {
 
     render() {
         console.log(this.props.neos)
-        return (
-            <div>
-                Cum
-            </div>  
-        );
-        // return this.props.todos.map((todo) => (
-        //     <TodoItem key={todo.id} todo={todo} markComplete={this.props.markComplete} delTodo={this.props.delTodo}/>
-        // ));
+        // return (
+        //     <div>
+        //         Cum
+        //     </div>  
+        // );
+        return this.props.neos.map((neo) => (
+            <NEO key={neo.id} neo={neo}/>
+        ));
     }
 }
 
