@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './App.scss';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -14,12 +14,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="container">
-            <Header />
-            <Route path="/" render={props => (
-              <Data/>
-            )} />
-          </div>
+          <Header />
+          <Route path="/" render={props => (
+            <Data/>
+          )} />
         </div>
       </Router>
     );

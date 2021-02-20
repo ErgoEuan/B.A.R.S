@@ -6,11 +6,6 @@ class NEOs extends Component {
 
     render() {
         console.log(this.props.neos)
-        // return (
-        //     <div>
-        //         {this.props.neos.map((neo, i) => <div key={i}>{neo.id}</div>)}
-        //     </div>  
-        // );
         return this.props.neos.map((neo, i) => (
             <NEO key={i} neo={neo}/>
         ));
