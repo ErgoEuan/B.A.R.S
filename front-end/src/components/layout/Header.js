@@ -1,23 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Header() {
-    return (
-        <header style={headerStyle}>
-            <h1>B.A.R.S</h1>
-            <Link style={linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
-        </header>
-    )
+
+export class Header extends Component {
+
+    render() {
+        return (
+            <div className="nav">
+
+                <div className="logo">B.A.R.S</div>
+
+                <div className="nav-centered">
+                    <div className="nav-link"><Link to="/">How It Works</Link></div>
+                    <div className="nav-link"><Link to="/about">About</Link></div>
+                    <div className="nav-link"><Link to="/custom">Custom Search</Link></div>
+                </div>
+
+                <div className="nav-right">
+                    <Link to="/about"><button class="btn">Button</button></Link>
+                </div>
+   
+            </div>
+        )
+    }
 }
 
-const headerStyle = {
-    background: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '10px'
-}
-
-const linkStyle = {
-    color: '#fff',
-    textDecoration: 'none'
-}
+export default Header

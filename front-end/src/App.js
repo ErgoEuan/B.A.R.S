@@ -14,10 +14,15 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
-          <Route path="/" render={props => (
-            <Data/>
-          )} />
+          <div className="container">
+            <Header />
+            <Route path="/" render={props => (
+              <Data/>
+            )} />
+          </div>
+          <div>
+            hello
+          </div>
         </div>
       </Router>
     );
