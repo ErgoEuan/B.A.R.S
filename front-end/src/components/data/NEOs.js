@@ -3,6 +3,7 @@ import NEO from './NEO';
 // import PropTypes from 'prop-types';
 
 class NEOs extends Component {
+    
 
     render() {
         // console.log(this.props.neos)

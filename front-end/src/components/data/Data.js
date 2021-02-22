@@ -1,4 +1,4 @@
-import React, {Component, useRef} from 'react';
+import React, {Component, Suspense, useRef} from 'react';
 import NEOs from './NEOs';
 
 import {getCurrentDate} from '../utils'
@@ -7,7 +7,8 @@ import axios from 'axios';
 
 import {Canvas, useFrame} from 'react-three-fiber';
 
-// import {softShadows, MeshWobbleMaterial} from 'drei';
+import {Html, useGLTF} from 'drei';
+
 
 // const SpinningMesh = ({position, args, color}) => {
 //     const mesh = useRef(null);
@@ -19,6 +20,11 @@ import {Canvas, useFrame} from 'react-three-fiber';
 //         </mesh>
 //     );
 // };
+
+const Earth = () => {
+    const gltf = useGLTF('/earth/scene.gltf', true)
+    return <primitive object={gltf.scene} dispose={null}/>
+}
 
 export default class Data extends Component {
 
@@ -58,7 +64,23 @@ export default class Data extends Component {
                         <Canvas 
                             shadowMap 
                             colorManagement 
-                            camera={{position: [-5, 2, 10], fov: [40]}}>
+                            // camera={{position: [-5, 2, 10], fov: 40}}
+                            camera={{position: [0, 0, 120], fov: 70}}>
+                            
+                            <Suspense fallback={null}>
+                                <mesh position={[0, 7, 0]}>
+                                    <Earth/>
+                                </mesh>
+                                <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
+                            </Suspense>
+
+                            <Html>
+                                <div>
+                                    <h1>hello</h1>
+                                </div>
+                            </Html>
+
+                        
 
                             <ambientLight intensity={0.3}/>
                             <directionalLight 
