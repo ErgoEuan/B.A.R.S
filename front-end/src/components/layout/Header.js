@@ -17,9 +17,8 @@ export class Header extends Component {
                 </div>
 
                 <div className="nav-right">
-                    <Link to="/about"><button class="btn">Button</button></Link>
+                    <Link to="/about"><button className="btn">Button</button></Link>
                 </div>
-   
             </div>
         )
     }

@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="container">
-            <Header />
+          <Header />
+          {/* <div className="container"> */}
             <Route path="/" render={props => (
               <Data/>
             )} />
@@ -23,7 +23,7 @@ class App extends Component {
           <div>
             hello
           </div>
-        </div>
+        {/* </div> */}
       </Router>
     );
   }

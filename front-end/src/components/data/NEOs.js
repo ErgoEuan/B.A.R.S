@@ -5,9 +5,9 @@ import NEO from './NEO';
 class NEOs extends Component {
 
     render() {
-        console.log(this.props.neos)
+        // console.log(this.props.neos)
         return this.props.neos.map((neo, i) => (
-            <NEO key={i} neo={neo}/>
+            <NEO key={i} neo={neo} count={i}/>
         ));
     }
 }

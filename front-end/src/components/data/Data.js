@@ -9,16 +9,16 @@ import {Canvas, useFrame} from 'react-three-fiber';
 
 // import {softShadows, MeshWobbleMaterial} from 'drei';
 
-const SpinningMesh = ({position, args, color}) => {
-    const mesh = useRef(null);
-    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
-    return (
-        <mesh castShadow position={position} ref={mesh}>
-            <boxBufferGeometry attach='geometry' args={args}/>
-            <meshStandardMaterial attach='material' color={color}/>
-        </mesh>
-    );
-};
+// const SpinningMesh = ({position, args, color}) => {
+//     const mesh = useRef(null);
+//     useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
+//     return (
+//         <mesh castShadow position={position} ref={mesh}>
+//             <boxBufferGeometry attach='geometry' args={args}/>
+//             <meshStandardMaterial attach='material' color={color}/>
+//         </mesh>
+//     );
+// };
 
 export default class Data extends Component {
 
@@ -58,7 +58,7 @@ export default class Data extends Component {
                         <Canvas 
                             shadowMap 
                             colorManagement 
-                            camera={{position: [-5, 2, 10], fov: 40}}>
+                            camera={{position: [-5, 2, 10], fov: [40]}}>
 
                             <ambientLight intensity={0.3}/>
                             <directionalLight 
@@ -86,13 +86,14 @@ export default class Data extends Component {
                                 </mesh>
                             </group>
 
-                            <SpinningMesh position={[0, 1, 0]} args={[2, 3, 2]} color="lightblue"/>
+                            {/* <SpinningMesh position={[0, 1, 0]} args={[2, 3, 2]} color="lightblue"/>
                             <SpinningMesh position={[-2, 1, -5]} color="pink"/>
-                            <SpinningMesh position={[5, 1, -2]} color="lightgreen"/>
+                            <SpinningMesh position={[5, 1, -2]} color="lightgreen"/> */}
+                            <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
                         </Canvas>
                     </div>
                     Got Data.
-                    <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
+                    {/* <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/> */}
                 </div>
             )
     }
