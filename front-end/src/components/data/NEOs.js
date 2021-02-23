@@ -4,7 +4,6 @@ import NEO from './NEO';
 
 class NEOs extends Component {
     
-
     render() {
         // console.log(this.props.neos)
         return this.props.neos.map((neo, i) => (

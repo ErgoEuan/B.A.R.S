@@ -3,74 +3,74 @@
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 3062,
+      "count": 1520,
       "max": [
-        1.682162880897522,
-        1.5460317134857178,
-        1.7440749406814575
+        1,
+        0.93036001920700073,
+        0.78658002614974976
       ],
       "min": [
-        -1.6829571723937988,
-        -1.8986562490463257,
-        -1.4217535257339478
+        -1,
+        -0.93036001920700073,
+        -0.78658002614974976
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
-      "byteOffset": 36744,
+      "byteOffset": 18240,
       "componentType": 5126,
-      "count": 3062,
+      "count": 1520,
       "max": [
-        0.99913287162780762,
-        0.99832445383071899,
-        0.9995492696762085
+        0.98966848850250244,
+        0.99967074394226074,
+        0.99962985515594482
       ],
       "min": [
-        -0.99870938062667847,
-        -0.99915885925292969,
-        -0.99974572658538818
+        -0.99923890829086304,
+        -0.998832106590271,
+        -0.99966889619827271
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 3,
       "componentType": 5126,
-      "count": 3062,
+      "count": 1520,
       "max": [
-        0.95809304714202881,
-        0.99993801116943359,
-        0.96529942750930786,
+        1,
+        0.99274301528930664,
+        0.99286997318267822,
         1
       ],
       "min": [
-        -0.99957364797592163,
-        -0.96555423736572266,
-        -0.9976961612701416,
-        1
+        -0.98685598373413086,
+        -0.99873298406600952,
+        -0.95046097040176392,
+        -1
       ],
       "type": "VEC4"
     },
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 3062,
+      "count": 1520,
       "max": [
-        1.0068075656890869,
-        0.99613940715789795
+        0.99804002046585083,
+        0.63634002208709717
       ],
       "min": [
-        0.0072427624836564064,
-        0.01170865073800087
+        0.0019499999471008778,
+        0.0019499999471008778
       ],
       "type": "VEC2"
     },
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 16872,
+      "count": 8520,
       "max": [
-        3061
+        1519
       ],
       "min": [
         0
@@ -80,42 +80,42 @@
   ],
   "asset": {
     "extras": {
-      "author": "v124entkl (https://sketchfab.com/v124entkl)",
+      "author": "quintessenz (https://sketchfab.com/quintessenz)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/models/c33a4e9a50d14a9f845d0512a41ad22b",
-      "title": "meteroit like stone"
+      "source": "https://sketchfab.com/models/96569c173c324f7d877ac96d03a73b27",
+      "title": "rock 10"
     },
-    "generator": "Sketchfab-3.42.2",
+    "generator": "Sketchfab-3.19.2",
     "version": "2.0"
   },
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 67488,
+      "byteLength": 34080,
       "byteOffset": 0,
       "name": "floatBufferViews",
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 24496,
-      "byteOffset": 67488,
+      "byteLength": 12160,
+      "byteOffset": 34080,
       "byteStride": 8,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 73488,
-      "byteOffset": 91984,
+      "byteLength": 36480,
+      "byteOffset": 46240,
       "byteStride": 12,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 48992,
-      "byteOffset": 165472,
+      "byteLength": 24320,
+      "byteOffset": 82720,
       "byteStride": 16,
       "name": "floatBufferViews",
       "target": 34962
@@ -123,32 +123,37 @@
   ],
   "buffers": [
     {
-      "byteLength": 214464,
+      "byteLength": 107040,
       "uri": "scene.bin"
     }
   ],
   "images": [
     {
-      "uri": "textures/Material.001_normal.png"
+      "uri": "textures/DefaultMaterial_metallicRoughness.png"
     },
     {
-      "uri": "textures/Material.001_metallicRoughness.png"
+      "uri": "textures/DefaultMaterial_normal.jpeg"
     },
     {
-      "uri": "textures/Material.001_baseColor.png"
+      "uri": "textures/DefaultMaterial_baseColor.jpeg"
     }
   ],
   "materials": [
     {
       "doubleSided": true,
-      "name": "Material.001",
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "DefaultMaterial",
       "normalTexture": {
-        "index": 0,
+        "index": 1,
         "scale": 1,
         "texCoord": 0
       },
       "occlusionTexture": {
-        "index": 1,
+        "index": 0,
         "strength": 1,
         "texCoord": 0
       },
@@ -163,14 +168,18 @@
           "index": 2,
           "texCoord": 0
         },
-        "metallicFactor": 0,
-        "roughnessFactor": 0.95770514949999996
+        "metallicFactor": 1,
+        "metallicRoughnessTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "roughnessFactor": 1
       }
     }
   ],
   "meshes": [
     {
-      "name": "lp_Material.001_0",
+      "name": "defaultMaterial",
       "primitives": [
         {
           "attributes": {
@@ -215,53 +224,29 @@
         0,
         0,
         0,
+        -4.3711390063094768e-08,
+        0.999999999999999,
         0,
-        1,
         0,
-        0,
-        -1,
-        0,
+        -0.999999999999999,
+        -4.3711390063094768e-08,
         0,
         0,
         0,
         0,
         1
       ],
-      "name": "b7145cb1a60e4b15b6b1aa7e0a737759.fbx"
+      "name": "Collada visual scene group"
     },
     {
       "children": [
         4
       ],
-      "name": "RootNode"
-    },
-    {
-      "children": [
-        5
-      ],
-      "matrix": [
-        100,
-        0,
-        0,
-        0,
-        0,
-        -1.6292067939183141e-05,
-        -99.999999999998678,
-        0,
-        0,
-        99.999999999998678,
-        -1.6292067939183141e-05,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "name": "lp"
+      "name": "g"
     },
     {
       "mesh": 0,
-      "name": "lp_Material.001_0"
+      "name": "defaultMaterial"
     }
   ],
   "samplers": [

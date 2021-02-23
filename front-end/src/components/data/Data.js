@@ -21,9 +21,61 @@ import {Html, useGLTF} from 'drei';
 //     );
 // };
 
-const Earth = () => {
+const EarthModel = () => {
     const gltf = useGLTF('/earth/scene.gltf', true)
     return <primitive object={gltf.scene} dispose={null}/>
+};
+
+// const Asteroid1Model = () => {
+//     const gltf = useGLTF('/asteroid1/scene.gltf', true)
+//     return <primitive object={gltf.scene} dispose={null}/>
+// };
+
+// const Asteroid2Model = () => {
+//     const gltf = useGLTF('/asteroid2/scene.gltf', true)
+//     return <primitive object={gltf.scene} dispose={null}/>
+// };
+
+// const Asteroid3Model = () => {
+//     const gltf = useGLTF('/asteroid3/scene.gltf', true)
+//     return <primitive object={gltf.scene} dispose={null}/>
+// };
+
+const Lights = () => {
+    return (
+      <>
+        {/* Ambient Light illuminates lights for all objects */}
+        <ambientLight intensity={0.3} />
+        {/* Diretion light */}
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <directionalLight
+          castShadow
+          position={[0, 10, 0]}
+          intensity={1.5}
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-camera-far={50}
+          shadow-camera-left={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={10}
+          shadow-camera-bottom={-10}
+        />
+        {/* Spotlight Large overhead light */}
+        <spotLight intensity={1} position={[1000, 0, 0]} castShadow />
+      </>
+    );
+  };
+
+const Earth = () => {
+    const mesh = useRef(null);
+    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += -0.0006));
+    return (
+        <group position={[0, 0, 0]}>
+            <mesh position={[0, -5.5, 110]} ref={mesh}>
+               <EarthModel/> 
+            </mesh>
+        </group>
+    )
 }
 
 export default class Data extends Component {
@@ -64,41 +116,14 @@ export default class Data extends Component {
                         <Canvas 
                             shadowMap 
                             colorManagement 
-                            // camera={{position: [-5, 2, 10], fov: 40}}
-                            camera={{position: [0, 0, 120], fov: 70}}>
-                            
+                            camera={{position: [0, 0, 120], fov: 15}}>
+                            <Lights/>
                             <Suspense fallback={null}>
-                                <mesh position={[0, 7, 0]}>
-                                    <Earth/>
-                                </mesh>
+                                <Earth/>
                                 <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
                             </Suspense>
 
-                            <Html>
-                                <div>
-                                    <h1>hello</h1>
-                                </div>
-                            </Html>
-
-                        
-
-                            <ambientLight intensity={0.3}/>
-                            <directionalLight 
-                                castShadow
-                                position={[0, 10, 0]}
-                                intensity={1.5}
-                                shadow-mapSize-width={1024}
-                                shadow-mapSize-height={1024}
-                                shadow-camera-far={50}
-                                shadow-camera-left={-10}
-                                shadow-camera-right={10}
-                                shadow-camera-top={10}
-                                shadow-camera-bottom={-10}
-                            />
-                            <pointLight position={[-10, 0, -20]} intensity={0.5}/>
-                            <pointLight position={[0, -10, 0]} intensity={1.5}/>
-
-                            <group>
+                            {/* <group>
                                 <mesh 
                                     receiveShadow 
                                     rotation={[-Math.PI / 2, 0, 0]} 
@@ -106,16 +131,9 @@ export default class Data extends Component {
                                     <planeBufferGeometry attach='geometry' args={[100, 100]}/>
                                     <shadowMaterial attach='material' opacity={0.3}/>
                                 </mesh>
-                            </group>
-
-                            {/* <SpinningMesh position={[0, 1, 0]} args={[2, 3, 2]} color="lightblue"/>
-                            <SpinningMesh position={[-2, 1, -5]} color="pink"/>
-                            <SpinningMesh position={[5, 1, -2]} color="lightgreen"/> */}
-                            <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
+                            </group> */}
                         </Canvas>
                     </div>
-                    Got Data.
-                    {/* <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/> */}
                 </div>
             )
     }

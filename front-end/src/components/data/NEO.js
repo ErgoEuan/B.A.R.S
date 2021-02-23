@@ -1,6 +1,8 @@
 import React, {useRef} from 'react';
 import {useFrame} from 'react-three-fiber';
 
+import {useGLTF, Sphere} from 'drei';
+
 // import PropTypes from 'prop-types';
 
 // class NEO extends Component {
@@ -27,17 +29,31 @@ import {useFrame} from 'react-three-fiber';
 //     }
 // }
 
+const AsteroidModel = ({modelPath}) => {
+    const gltf = useGLTF(modelPath, true)
+    return <primitive object={gltf.scene} dispose={null}/>
+};
 
 const NEO = ({neo, count}) => {
-    console.log(neo)
     console.log(count)
-    // console.log(neo.name)
+    const NumberModle = '1';
+    const modelPath = '/asteroid' + NumberModle + '/scene.gltf';
+
+    const size = ((neo.estimated_diameter.meters.estimated_diameter_max - neo.estimated_diameter.meters.estimated_diameter_min) / 2) + neo.estimated_diameter.meters.estimated_diameter_min;
+
+    console.log(size)
+
+    const xtemp = (count - 6) * 3.5;
+    const ytemp = Math.floor(Math.random() * 11) + -2
+
     const mesh = useRef(null);
     useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
     return (
-        <mesh castShadow position={[0, 0, 0]} ref={mesh}>
-            <boxBufferGeometry attach='geometry' args={[1, 1, 1]}/>
-            <meshStandardMaterial attach='material' color="lightblue"/>
+        <mesh castShadow position={[xtemp, ytemp, 20]} ref={mesh}>
+            <AsteroidModel modelPath={modelPath}/>
+            <Sphere>
+                <meshStandardMaterial attach='material' color="#323030"/>
+            </Sphere>
         </mesh>
     );
 };

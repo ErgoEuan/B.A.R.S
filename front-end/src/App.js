@@ -15,15 +15,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          {/* <div className="container"> */}
+          <div style={{ backgroundImage: "url(/img/star.jpg)", backgroundSize: "cover"}}>
             <Route path="/" render={props => (
               <Data/>
             )} />
           </div>
-          <div>
-            hello
-          </div>
-        {/* </div> */}
+        </div>
       </Router>
     );
   }
