@@ -1,45 +1,19 @@
 import React, {Component, Suspense, useRef} from 'react';
 import NEOs from './NEOs';
-
-import {getCurrentDate} from '../utils'
-import {getAPIKey} from '../utils'
 import axios from 'axios';
 
-import {Canvas, useFrame} from 'react-three-fiber';
+// Utils
+import {getCurrentDate} from '../utils'
+import {getAPIKey} from '../utils'
 
-import {Html, useGLTF} from 'drei';
-
-
-// const SpinningMesh = ({position, args, color}) => {
-//     const mesh = useRef(null);
-//     useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
-//     return (
-//         <mesh castShadow position={position} ref={mesh}>
-//             <boxBufferGeometry attach='geometry' args={args}/>
-//             <meshStandardMaterial attach='material' color={color}/>
-//         </mesh>
-//     );
-// };
+// R3F
+import { Canvas, useFrame } from "react-three-fiber";
+import { useGLTF } from "drei";
 
 const EarthModel = () => {
     const gltf = useGLTF('/earth/scene.gltf', true)
     return <primitive object={gltf.scene} dispose={null}/>
 };
-
-// const Asteroid1Model = () => {
-//     const gltf = useGLTF('/asteroid1/scene.gltf', true)
-//     return <primitive object={gltf.scene} dispose={null}/>
-// };
-
-// const Asteroid2Model = () => {
-//     const gltf = useGLTF('/asteroid2/scene.gltf', true)
-//     return <primitive object={gltf.scene} dispose={null}/>
-// };
-
-// const Asteroid3Model = () => {
-//     const gltf = useGLTF('/asteroid3/scene.gltf', true)
-//     return <primitive object={gltf.scene} dispose={null}/>
-// };
 
 const Lights = () => {
     return (
@@ -47,11 +21,11 @@ const Lights = () => {
         {/* Ambient Light illuminates lights for all objects */}
         <ambientLight intensity={0.3} />
         {/* Diretion light */}
-        <directionalLight position={[10, 10, 5]} intensity={1} />
+        {/* <directionalLight position={[10, 10, 5]} intensity={1} /> */}
         <directionalLight
           castShadow
           position={[0, 10, 0]}
-          intensity={1.5}
+          intensity={1}
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
           shadow-camera-far={50}
@@ -122,16 +96,6 @@ export default class Data extends Component {
                                 <Earth/>
                                 <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
                             </Suspense>
-
-                            {/* <group>
-                                <mesh 
-                                    receiveShadow 
-                                    rotation={[-Math.PI / 2, 0, 0]} 
-                                    position={[0, -3, 0]}>
-                                    <planeBufferGeometry attach='geometry' args={[100, 100]}/>
-                                    <shadowMaterial attach='material' opacity={0.3}/>
-                                </mesh>
-                            </group> */}
                         </Canvas>
                     </div>
                 </div>

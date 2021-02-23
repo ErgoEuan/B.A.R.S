@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {useFrame} from 'react-three-fiber';
 
-import {useGLTF, Sphere} from 'drei';
+import {useGLTF, Sphere, Html} from 'drei';
 
 // import PropTypes from 'prop-types';
 
@@ -43,17 +43,39 @@ const NEO = ({neo, count}) => {
 
     console.log(size)
 
-    const xtemp = (count - 6) * 3.5;
+    var sizeTemp = 0;
+    if (size <= 25) {
+        sizeTemp = 1
+    }
+    else if (size <= 50) {
+        sizeTemp = 10
+    } 
+    else if (size <= 100) {
+        sizeTemp = 20
+    }
+    else if (size <= 150) {
+        sizeTemp = 30
+    }
+    else {
+        sizeTemp = 40
+    }
+
+    console.log(sizeTemp)
+
+    const xtemp = (count - 7) * 3;
     const ytemp = Math.floor(Math.random() * 11) + -2
 
     const mesh = useRef(null);
     useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
     return (
-        <mesh castShadow position={[xtemp, ytemp, 20]} ref={mesh}>
+        <mesh castShadow position={[xtemp, ytemp, sizeTemp]} ref={mesh}>
             <AsteroidModel modelPath={modelPath}/>
             <Sphere>
                 <meshStandardMaterial attach='material' color="#323030"/>
             </Sphere>
+            <Html>
+                <h1>0</h1>
+            </Html>
         </mesh>
     );
 };
