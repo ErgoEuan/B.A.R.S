@@ -74,7 +74,7 @@ const NEO = ({neo, count}) => {
                 <meshStandardMaterial attach='material' color="#323030"/>
             </Sphere>
             <Html>
-                <h1>0</h1>
+                <h3 style={{ color: "white"}}>{neo.name}</h3>
             </Html>
         </mesh>
     );
