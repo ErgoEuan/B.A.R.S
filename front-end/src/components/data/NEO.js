@@ -30,8 +30,8 @@ import {useGLTF, Sphere, Html} from 'drei';
 // }
 
 const AsteroidModel = ({modelPath}) => {
-    const gltf = useGLTF(modelPath, true)
-    return <primitive object={gltf.scene} dispose={null}/>
+    const gltf = useGLTF(modelPath, true);
+    return <primitive object={gltf.scene} dispose={null}/>;
 };
 
 const NEO = ({neo, count}) => {
