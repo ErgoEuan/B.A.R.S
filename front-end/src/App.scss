@@ -121,3 +121,15 @@ body::-webkit-scrollbar {
   }
 
 }
+
+.neo-data {
+  width: max-content;
+  position: relative;
+  color: white;
+  border: solid;
+}
+
+.neo-data-expand {
+  color: rgb(202, 12, 12);
+  transition-duration: 1s;
+}
