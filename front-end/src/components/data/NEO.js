@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {useFrame} from 'react-three-fiber';
 
-import {useGLTF, Sphere, Html} from 'drei';
+import {useGLTF, Sphere, Html, Center} from 'drei';
 
 import {useSection} from '../utils'
 
@@ -9,17 +9,18 @@ import {useSection} from '../utils'
 
 const AsteroidModel = ({modelPath}) => {
     const gltf = useGLTF(modelPath, true);
-    return <primitive object={gltf.scene} dispose={null}/>;
+    let tempGltf = gltf.scene.clone();
+    return <primitive object={tempGltf} dispose={null}/>;
 };
 
 const NEO = ({neo, count}) => {
-    // console.log(count)
+
     const NumberModle = '1';
     const modelPath = '/asteroid' + NumberModle + '/scene.gltf';
 
     const size = ((neo.estimated_diameter.meters.estimated_diameter_max - neo.estimated_diameter.meters.estimated_diameter_min) / 2) + neo.estimated_diameter.meters.estimated_diameter_min;
 
-    // console.log(size)
+
 
     var sizeTemp = 0;
     if (size <= 25) {
@@ -46,61 +47,69 @@ const NEO = ({neo, count}) => {
     // const xtemp = Math.floor((width/2) - width) + (width/count) ;
     // const ytemp = Math.floor(Math.random() * 11) + -2;
 
+
     const mesh = useRef(null);
-    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
+    // const ranSpin = 0.01;
+    const ranSpin = (Math.floor(Math.random() * (3 - 1 + 1) + 1))/ 100;
+    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += ranSpin));
 
-    //expand boxs
 
-    const [opacity, setOpacity] = useState("0")
-    const [position, setPosition] = useState("absolute")
-    const [zIndex, setZIndex] = useState("3")
-    const [zIndexB, setZIndexB] = useState("4")
+    const [isActive, setIsActive] = useState(false)
+    const [zIndex] = useState("3")
+    // const [zIndex, setZIndex] = useState("3")
     
 
-    function activateExpand() {
+    function toggleExpand() {
+        var elems = document.querySelectorAll(".neo-data-expand.isActive");
+        // console.log(elems.length, isActive)
+        if(elems.length > 0 && isActive) {
+            setIsActive(false)
 
-        if (opacity === "0") {
-            setOpacity("1")
-            setPosition("relative")
-            setZIndex("4")
-            setZIndexB("5")
+        } else if(elems.length === 0 && !isActive) {
+            
+            setIsActive(true)
         }
-        else {
-            setOpacity("0")
-            setPosition("absolute")
-            setZIndex("3")
-            setZIndexB("2")
-        }
-        console.log('name clicked')
+
+        // console.log('name clicked')
     }
 
     return (
-        <mesh castShadow position={[xtemp, ytemp, sizeTemp]} ref={mesh}>
-            <AsteroidModel modelPath={modelPath}/>
-            <Sphere>
-                <meshStandardMaterial attach='material' color="#323030"/>
-            </Sphere>
-            <Html>
-                <div className="neo-data" style={{ zIndex: zIndex}}>
-                    <div className="neo-data-name" onClick={activateExpand}>
-                        <h3>{neo.name}</h3>
+        <>
+            <mesh castShadow position={[xtemp, ytemp, sizeTemp]} ref={mesh}>
+                <AsteroidModel modelPath={modelPath}/>
+                <Sphere>
+                    <meshStandardMaterial attach='material' color="#323030"/>
+                </Sphere>
+                <Html
+                zIndexRange={[100, 0]}>
+                    <div className="neo-data" style={{ zIndex: zIndex}}>
+                        <div className="neo-data-name" onClick={toggleExpand}>
+                        {neo.name}
+                        </div> 
                     </div>
-                    <div className="neo-data-expand" style={{ opacity: opacity, position: position, zIndex: zIndexB}}>
-                        Apsolute Magitude: {neo.absolute_magnitude_h}<br/>
-                        Estimated Diameter in km Max: {neo.estimated_diameter.kilometers.estimated_diameter_max}<br/>
-                        Estimated Diameter in km Min: {neo.estimated_diameter.kilometers.estimated_diameter_min}<br/>
-                        Estimated Diameter in m Max: {neo.estimated_diameter.meters.estimated_diameter_max}<br/>
-                        Estimated Diameter in m Min: {neo.estimated_diameter.meters.estimated_diameter_min}<br/>
-                        ID: {neo.id}<br/>
-                        Potentially Hazardous: {neo.is_potentially_hazardous_asteroid ? 'true' : 'false'}<br/>
-                        Sentry Object: {neo.is_sentry_object ? 'true' : 'false'}<br/>
-                        Name: {neo.name}<br/>
-                        JPL: {neo.nasa_jpl_url}<br/>
-                        NEO Refference ID: {neo.neo_reference_id}<br/>
-                    </div>  
-                </div>
-            </Html>
-        </mesh>
+                </Html>
+            </mesh>
+            <Center>
+                <mesh>
+                    <Html>
+                        <div className={`neo-data-expand ${isActive ? 'isActive' : ''}`}>
+                        <div className="neo-data-close" onClick={toggleExpand}>Close</div>
+                            Apsolute Magitude: {neo.absolute_magnitude_h}<br/>
+                            Estimated Diameter in km Max: {neo.estimated_diameter.kilometers.estimated_diameter_max}<br/>
+                            Estimated Diameter in km Min: {neo.estimated_diameter.kilometers.estimated_diameter_min}<br/>
+                            Estimated Diameter in m Max: {neo.estimated_diameter.meters.estimated_diameter_max}<br/>
+                            Estimated Diameter in m Min: {neo.estimated_diameter.meters.estimated_diameter_min}<br/>
+                            ID: {neo.id}<br/>
+                            Potentially Hazardous: {neo.is_potentially_hazardous_asteroid ? 'true' : 'false'}<br/>
+                            Sentry Object: {neo.is_sentry_object ? 'true' : 'false'}<br/>
+                            Name: {neo.name}<br/>
+                            JPL: {neo.nasa_jpl_url}<br/>
+                            NEO Refference ID: {neo.neo_reference_id}<br/>
+                        </div> 
+                    </Html>
+                </mesh>
+            </Center>
+        </>
     );
 };
 

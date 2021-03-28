@@ -126,10 +126,42 @@ body::-webkit-scrollbar {
   width: max-content;
   position: relative;
   color: white;
-  border: solid;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+
+.neo-data:hover {
+  opacity:1;
+}
+
+.neo-data-name {
+  cursor:pointer;
 }
 
 .neo-data-expand {
   color: rgb(202, 12, 12);
-  transition-duration: 1s;
+  transition-duration: 0.3s;
+  max-height:0;
+  overflow:hidden;
+  position:absolute;
+  background: rgba(0,0,0,0.7);
+  padding-left:10px;
+  padding-right:10px;
+  left: -200px;
+  width: 400px;
+  transform: translateY(-50%);
+
+  &.isActive {
+    max-height: 20em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.neo-data-close {
+  position:absolute;
+  color:#ffffff;
+  top:0;
+  right:0;
+  cursor:pointer;
 }
