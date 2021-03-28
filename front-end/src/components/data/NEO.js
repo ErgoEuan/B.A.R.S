@@ -15,7 +15,9 @@ const AsteroidModel = ({modelPath}) => {
 
 const NEO = ({neo, count}) => {
 
-    const NumberModle = '1';
+    const oddeven = ((count % 2) + 1);
+    const oddevenS = oddeven.toString();
+    const NumberModle = oddevenS;
     const modelPath = '/asteroid' + NumberModle + '/scene.gltf';
 
     const size = ((neo.estimated_diameter.meters.estimated_diameter_max - neo.estimated_diameter.meters.estimated_diameter_min) / 2) + neo.estimated_diameter.meters.estimated_diameter_min;
@@ -77,9 +79,6 @@ const NEO = ({neo, count}) => {
         <>
             <mesh castShadow position={[xtemp, ytemp, sizeTemp]} ref={mesh}>
                 <AsteroidModel modelPath={modelPath}/>
-                <Sphere>
-                    <meshStandardMaterial attach='material' color="#323030"/>
-                </Sphere>
                 <Html
                 zIndexRange={[100, 0]}>
                     <div className="neo-data" style={{ zIndex: zIndex}}>
