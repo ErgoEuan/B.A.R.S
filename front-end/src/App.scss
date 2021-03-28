@@ -58,7 +58,7 @@ body::-webkit-scrollbar {
   .nav-centered {
     float: none;
     position: absolute;
-    top: 50%;
+    top: 45px;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -112,7 +112,7 @@ body::-webkit-scrollbar {
     display: inline-block;
     font-size: 17px;
     font-weight: 900;
-    margin: 4px 2px;
+    margin: 4px 16px;
     cursor: pointer;
   }
 

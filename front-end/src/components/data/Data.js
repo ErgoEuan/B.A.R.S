@@ -21,8 +21,8 @@ const Lights = () => {
         {/* Ambient Light illuminates lights for all objects */}
         <ambientLight intensity={0.3} />
         {/* Diretion light */}
-        {/* <directionalLight position={[10, 10, 5]} intensity={1} /> */}
-        <directionalLight
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        {/* <directionalLight
           castShadow
           position={[0, 10, 0]}
           intensity={1}
@@ -33,7 +33,7 @@ const Lights = () => {
           shadow-camera-right={10}
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
-        />
+        /> */}
         {/* Spotlight Large overhead light */}
         <spotLight intensity={1} position={[1000, 0, 0]} castShadow />
       </>
@@ -56,20 +56,37 @@ export default class Data extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {data: []}
+        this.state = {
+            data: [],
+            currentData: 'Null'
+        }
     }
 
     updateData() {
-        axios.get('https://api.nasa.gov/neo/rest/v1/feed', {
-            params: {
-                start_date: getCurrentDate(),
-                end_date: getCurrentDate(),
-                api_key: getAPIKey()
-            }
-        })
-        .then(res => {
-            this.setState({ data: res.data });
-        });
+        const selectedDate = (this.props.selectedDate)
+        if (selectedDate === 'Null') {
+            axios.get('https://api.nasa.gov/neo/rest/v1/feed', {
+                params: {
+                    start_date: getCurrentDate(),
+                    end_date: getCurrentDate(),
+                    api_key: getAPIKey()
+                }
+            })
+            .then(res => {
+                this.setState({ data: res.data, currentData: getCurrentDate()});
+            });
+        } else {
+            axios.get('https://api.nasa.gov/neo/rest/v1/feed', {
+                params: {
+                    start_date: selectedDate,
+                    end_date: selectedDate,
+                    api_key: getAPIKey()
+                }
+            })
+            .then(res => {
+                this.setState({ data: res.data, currentData: selectedDate});
+            });
+        }
     }
     
     componentDidMount() {
@@ -77,13 +94,24 @@ export default class Data extends Component {
     }
 
     render() {
-        if (undefined === this.state.data.near_earth_objects)
+        const selectedDate = (this.props.selectedDate)
+        const currentData = (this.state.currentData)
+        if (selectedDate !== 'Null') {
+            if (selectedDate !== currentData) {
+                this.updateData()
+            }
+        }
+
+        let testDate = (currentData === 'Null') ? getCurrentDate() : currentData
+
+        if (undefined === this.state.data.near_earth_objects) {
             return (
                 <div>
                     No Data.
                 </div>  
             );
-        else 
+        }
+        else {
             return (
                 <div>
                     <div className="canvas">
@@ -94,11 +122,12 @@ export default class Data extends Component {
                             <Lights/>
                             <Suspense fallback={null}>
                                 <Earth/>
-                                <NEOs neos={this.state.data.near_earth_objects[getCurrentDate()]}/>
+                                <NEOs neos={this.state.data.near_earth_objects[testDate]}/>
                             </Suspense>
                         </Canvas>
                     </div>
                 </div>
             )
+        }
     }
 }

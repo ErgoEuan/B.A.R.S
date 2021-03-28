@@ -1,69 +1,57 @@
-import React, { Component, useState } from 'react'
+import React, { Component, forwardRef } from 'react'
 import { Link } from 'react-router-dom'
-// import {getCurrentDate} from '../utils'
-// import DatePicker from 'react-datepicker'
-// import 'react-datepicker/dist/react-datepicker.css' 
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css' 
 
+export class Header extends Component {
 
-const Header = () => {
-    // const [selectedDate, setSelectedDate] = useState(null)
-    // console.log(getCurrentDate())
-    // console.log(selectedDate)
-    return (
-        <div className="nav">
+    state = {
+        date: (new Date())
+    }
+    
+    render() {
 
-            <div className="logo">B.A.R.S</div>
+        const dateHolder = (this.props.currentDate)
+        const currentDateHolder = (this.state.date)
 
-            <div className="nav-centered">
-                <div className="nav-link"><Link to="/">How It Works</Link></div>
-                <div className="nav-link"><Link to="/about">About</Link></div>
-                <div className="nav-link"><Link to="/custom">Custom Search</Link></div>
-            </div>
+        if (dateHolder === 'Null') {
+            this.props.dateChange(this.state.date);
+        } else if (dateHolder !== currentDateHolder) {
+            this.props.dateChange(this.state.date);
+        }
+        
+        const currentDate = this.state.date
 
-            <div className="nav-right">
-                <button className="btn">
-                    {/* <DatePicker 
-                        selected={selectedDate}
-                        onChange={date => setSelectedDate(date)}
+        const ExampleCustomInput = forwardRef(
+            ({ value, onClick }, ref) => (
+              <button className="btn" onClick={onClick} ref={ref}>
+                {value}
+              </button>
+            ),
+        );
+
+        return (
+            <div className="nav">
+
+                <div className="logo">B.A.R.S</div>
+
+                <div className="nav-centered">
+                    <div className="nav-link"><Link to="/">How It Works</Link></div>
+                    <div className="nav-link"><Link to="/about">About</Link></div>
+                </div>
+
+                <div className="nav-right">
+                    <DatePicker 
+                        selected={currentDate}
+                        onChange={date => this.setState({date: date})}
+                        customInput={<ExampleCustomInput />}
                         dateFormat='dd/MM/yyyy'
-                        showYearDropdown
                         scrollableYearDropdown
-                    /> */}
-                </button>
-                
-                    {/* <DatePicker 
-                        selected={selectedDate}
-                        onChange={date => setSelectedDate(date)}
-                        dateFormat='dd/MM/yyyy'
-                        showYearDropdown
-                        scrollableYearDropdown
-                    /> */}
-                
+                    /> 
+                </div>
             </div>
-        </div>
-    );
-};
-
-// export class Header extends Component {
-
-//     render() {
-//         return (
-//             <div className="nav">
-
-//                 <div className="logo">B.A.R.S</div>
-
-//                 <div className="nav-centered">
-//                     <div className="nav-link"><Link to="/">How It Works</Link></div>
-//                     <div className="nav-link"><Link to="/about">About</Link></div>
-//                     <div className="nav-link"><Link to="/custom">Custom Search</Link></div>
-//                 </div>
-
-//                 <div className="nav-right">
-//                     <Link to="/about"><button className="btn">Button</button></Link>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
+        )
+    }
+}
 
 export default Header
