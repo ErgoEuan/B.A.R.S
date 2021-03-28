@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {useFrame} from 'react-three-fiber';
 
-import {useGLTF, Sphere, Html, Center} from 'drei';
+import {useGLTF, Html, Center} from 'drei';
 
 import {useSection} from '../utils'
 
