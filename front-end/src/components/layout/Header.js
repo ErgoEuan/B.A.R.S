@@ -22,7 +22,7 @@ export class Header extends Component {
         
         const currentDate = this.state.date
 
-        const ExampleCustomInput = forwardRef(
+        const CustomInput = forwardRef(
             ({ value, onClick }, ref) => (
               <button className="btn" onClick={onClick} ref={ref}>
                 {value}
@@ -36,15 +36,15 @@ export class Header extends Component {
                 <div className="logo">B.A.R.S</div>
 
                 <div className="nav-centered">
-                    <div className="nav-link"><Link to="/">How It Works</Link></div>
-                    <div className="nav-link"><Link to="/about">About</Link></div>
+                    <div className="nav-link"><Link to="/HowTo">How It Works</Link></div>
+                    <div className="nav-link"><Link to="/About">About</Link></div>
                 </div>
 
                 <div className="nav-right">
                     <DatePicker 
                         selected={currentDate}
                         onChange={date => this.setState({date: date})}
-                        customInput={<ExampleCustomInput />}
+                        customInput={<CustomInput />}
                         dateFormat='dd/MM/yyyy'
                         scrollableYearDropdown
                     /> 

@@ -65,7 +65,6 @@ body::-webkit-scrollbar {
 
   .nav-right {
     float: right;
-
   }
 
   .nav-link{
@@ -126,9 +125,8 @@ body::-webkit-scrollbar {
 .neo-data {
   width: max-content;
   position: relative;
-  color: white;
   transform: translate(-50%, -50%);
-  opacity: 0.5;
+  opacity: 0.85;
 }
 
 .neo-data:hover {

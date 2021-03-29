@@ -11,30 +11,6 @@ const AsteroidModel = ({modelPath}) => {
     return <primitive object={tempGltf} dispose={null}/>;
 };
 
-// const Glow = ({hazardous, x, y, z}) => {
-
-//     console.log(hazardous)
-//     if (hazardous === true) {
-//         console.log('trig')
-//         console.log(x)
-//         console.log(y)
-//         console.log(z)
-//         const tempz = z + 20;
-//         return (
-//             <>
-//                 {/* <directionalLight position={[x, y, 100]} target-position={[x, y, z]} intensity={1} color={'red'} /> */}
-//                 <spotLight intensity={1} position={[-18, 7, 45]} target-position={[x, y, z]} color={'red'} angle={0.2}/>
-//             </>
-//         );
-//     } else {
-//         return (
-//             <>
-//              {/* <spotLight intensity={1} position={[x, y, 50]} target-position={[x, y, z]} color={'blue'} angle={0.2}/> */}
-//             </>
-//         );
-//     }
-// };
-
 const NEO = ({neo, count, amount}) => {
 
     //moddle
@@ -45,37 +21,11 @@ const NEO = ({neo, count, amount}) => {
 
     //size
     const size = ((neo.estimated_diameter.meters.estimated_diameter_max - neo.estimated_diameter.meters.estimated_diameter_min) / 2) + neo.estimated_diameter.meters.estimated_diameter_min;
-    
-    var sizeProcessed = 0;
-    if (size <= 50) {
-        sizeProcessed = 0.6
-    }
-    else if (size <= 100) {
-        sizeProcessed = 0.8
-    } 
-    else if (size <= 150) {
-        sizeProcessed = 1
-    } 
-    else if (size <= 200) {
-        sizeProcessed = 1.2
-    } 
-    else if (size <= 250) {
-        sizeProcessed = 1.4
-    } 
-    else if (size <= 500) {
-        sizeProcessed = 1.6
-    } 
-    else if (size <= 1000) {
-        sizeProcessed = 1.8
-    }
-    else if (size <= 1500) {
-        sizeProcessed = 2
-    } 
-    else if (size <= 2000) {
-        sizeProcessed = 2.2
-    }
-    else {
-        sizeProcessed = 2.6
+    var sizeProcessed = 0.6 + (Math.floor((size - 1)/50)*0.2);
+    if (size >= 250 && size <= 5000) {
+        sizeProcessed = 1.6 + (Math.floor((size - 1)/500)*0.2);
+    } else if (size > 5000) {
+        sizeProcessed = 3.4
     }
 
     //positioning x
@@ -111,15 +61,14 @@ const NEO = ({neo, count, amount}) => {
         // console.log('name clicked')
     }
 
+    const hazardous = neo.is_potentially_hazardous_asteroid === true ? 'red' : 'white'
+
     return (
         <>  
-            {/* <mesh>
-                <Glow hazardous={neo.is_potentially_hazardous_asteroid} x={xtemp} y={ytemp} z={sizeTemp}/>
-            </mesh> */}
             <mesh castShadow position={[x, y, 0]} ref={mesh} scale={[sizeProcessed,sizeProcessed,sizeProcessed]}>
                 <AsteroidModel modelPath={modelPath}/>
                 <Html zIndexRange={[100, 0]}>
-                    <div className="neo-data" style={{ zIndex: zIndex}}>
+                    <div className="neo-data" style={{ zIndex: zIndex, color: hazardous}}>
                         <div className="neo-data-name" onClick={toggleExpand}>
                         {neo.name}
                         </div> 
