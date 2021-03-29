@@ -2,11 +2,9 @@ import React, {Component, Suspense, useRef} from 'react';
 import NEOs from './NEOs';
 import axios from 'axios';
 
-// Utils
 import {getCurrentDate} from '../utils'
 import {getAPIKey} from '../utils'
 
-// R3F
 import { Canvas, useFrame } from "react-three-fiber";
 import { useGLTF } from "drei";
 
