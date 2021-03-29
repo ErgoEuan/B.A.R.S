@@ -58,8 +58,6 @@ const NEO = ({neo, count}) => {
     const [zIndex] = useState("3")
     // const [zIndex, setZIndex] = useState("3")
     
-    console.log(neo)
-    
     function toggleExpand() {
         var elems = document.querySelectorAll(".neo-data-expand.isActive");
         // console.log(elems.length, isActive)
