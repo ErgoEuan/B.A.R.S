@@ -13,6 +13,26 @@ const AsteroidModel = ({modelPath}) => {
     return <primitive object={tempGltf} dispose={null}/>;
 };
 
+const Glow = ({hazardous, x, y, z}) => {
+
+    console.log(hazardous)
+    if (hazardous === true) {
+        console.log('trig')
+        const tempz = z + 5;
+        return (
+            <>
+                {/* <directionalLight position={[x, y, z]} intensity={1} color={'red'} /> */}
+                <spotLight intensity={1} position={[x, y, tempz]} color={'red'} />
+            </>
+        );
+    } else {
+        return (
+            <>
+            </>
+        );
+    }
+};
+
 const NEO = ({neo, count}) => {
 
     const oddeven = ((count % 2) + 1);
@@ -72,7 +92,10 @@ const NEO = ({neo, count}) => {
     }
 
     return (
-        <>
+        <>  
+            <mesh>
+                <Glow hazardous={neo.is_potentially_hazardous_asteroid} x={xtemp} y={ytemp} z={sizeTemp}/>
+            </mesh>
             <mesh castShadow position={[xtemp, ytemp, sizeTemp]} ref={mesh}>
                 <AsteroidModel modelPath={modelPath}/>
                 <Html

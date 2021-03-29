@@ -38,7 +38,7 @@ const Lights = () => {
         <spotLight intensity={1} position={[1000, 0, 0]} castShadow />
       </>
     );
-  };
+};
 
 const Earth = () => {
     const mesh = useRef(null);
