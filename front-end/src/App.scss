@@ -140,7 +140,7 @@ body::-webkit-scrollbar {
 }
 
 .neo-data-expand {
-  color: rgb(202, 12, 12);
+  color: rgb(255, 255, 255);
   transition-duration: 0.3s;
   max-height:0;
   overflow:hidden;
@@ -152,10 +152,19 @@ body::-webkit-scrollbar {
   width: 400px;
   transform: translateY(-50%);
 
+  .neo-title {
+    text-align: center;
+  }
+
+  .neo-info {
+    padding: 5px;
+    text-align: left;
+  }
+
   &.isActive {
     max-height: 20em;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 

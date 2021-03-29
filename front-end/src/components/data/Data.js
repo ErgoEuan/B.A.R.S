@@ -42,7 +42,7 @@ const Lights = () => {
 
 const Earth = () => {
     const mesh = useRef(null);
-    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += -0.0006));
+    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += -0.0002));
     return (
         <group position={[0, 0, 0]}>
             <mesh position={[0, -5.5, 110]} ref={mesh}>

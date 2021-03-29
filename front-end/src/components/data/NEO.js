@@ -22,8 +22,6 @@ const NEO = ({neo, count}) => {
 
     const size = ((neo.estimated_diameter.meters.estimated_diameter_max - neo.estimated_diameter.meters.estimated_diameter_min) / 2) + neo.estimated_diameter.meters.estimated_diameter_min;
 
-
-
     var sizeTemp = 0;
     if (size <= 25) {
         sizeTemp = 1
@@ -51,8 +49,8 @@ const NEO = ({neo, count}) => {
 
 
     const mesh = useRef(null);
-    // const ranSpin = 0.01;
-    const ranSpin = (Math.floor(Math.random() * (3 - 1 + 1) + 1))/ 100;
+    // const ranSpin = 0.003;
+    const ranSpin = (Math.floor(Math.random() * (9 - 3 + 1) + 3))/ 1000;
     useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += ranSpin));
 
 
@@ -60,7 +58,8 @@ const NEO = ({neo, count}) => {
     const [zIndex] = useState("3")
     // const [zIndex, setZIndex] = useState("3")
     
-
+    console.log(neo)
+    
     function toggleExpand() {
         var elems = document.querySelectorAll(".neo-data-expand.isActive");
         // console.log(elems.length, isActive)
@@ -71,7 +70,6 @@ const NEO = ({neo, count}) => {
             
             setIsActive(true)
         }
-
         // console.log('name clicked')
     }
 
@@ -93,17 +91,20 @@ const NEO = ({neo, count}) => {
                     <Html>
                         <div className={`neo-data-expand ${isActive ? 'isActive' : ''}`}>
                         <div className="neo-data-close" onClick={toggleExpand}>Close</div>
-                            Apsolute Magitude: {neo.absolute_magnitude_h}<br/>
-                            Estimated Diameter in km Max: {neo.estimated_diameter.kilometers.estimated_diameter_max}<br/>
-                            Estimated Diameter in km Min: {neo.estimated_diameter.kilometers.estimated_diameter_min}<br/>
-                            Estimated Diameter in m Max: {neo.estimated_diameter.meters.estimated_diameter_max}<br/>
-                            Estimated Diameter in m Min: {neo.estimated_diameter.meters.estimated_diameter_min}<br/>
-                            ID: {neo.id}<br/>
-                            Potentially Hazardous: {neo.is_potentially_hazardous_asteroid ? 'true' : 'false'}<br/>
-                            Sentry Object: {neo.is_sentry_object ? 'true' : 'false'}<br/>
-                            Name: {neo.name}<br/>
-                            JPL: {neo.nasa_jpl_url}<br/>
-                            NEO Refference ID: {neo.neo_reference_id}<br/>
+                            <div className="neo-title">
+                                {neo.name}
+                            </div>
+                            <div className="neo-info">
+                                Apsolute Magitude: {neo.absolute_magnitude_h}<br/>
+                                Estimated Diameter in km Max: {neo.estimated_diameter.kilometers.estimated_diameter_max}<br/>
+                                Estimated Diameter in km Min: {neo.estimated_diameter.kilometers.estimated_diameter_min}<br/>
+                                Estimated Diameter in m Max: {neo.estimated_diameter.meters.estimated_diameter_max}<br/>
+                                Estimated Diameter in m Min: {neo.estimated_diameter.meters.estimated_diameter_min}<br/>
+                                Potentially Hazardous: {neo.is_potentially_hazardous_asteroid ? 'true' : 'false'}<br/>
+                                Sentry Object: {neo.is_sentry_object ? 'true' : 'false'}<br/>
+                                JPL: {neo.nasa_jpl_url}<br/>
+                                NEO Refference ID: {neo.neo_reference_id}<br/>
+                            </div>
                         </div> 
                     </Html>
                 </mesh>
