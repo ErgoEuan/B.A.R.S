@@ -13,8 +13,9 @@ export function getCurrentDate(separator='-'){
 
 export function getAPIKey(){
 
+    //Free NASA API key available at https://api.nasa.gov/
     let apiKey = 'AOb7pUI6SWcptJeaS13zybABmo1eQrCvQPTtOVzq'
-
+    
     return `${apiKey}`
 }
 

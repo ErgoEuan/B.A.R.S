@@ -20,7 +20,7 @@ const Lights = () => {
         <ambientLight intensity={0.3} />
         {/* Diretion light */}
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        {/* <directionalLight
+        <directionalLight
           castShadow
           position={[0, 10, 0]}
           intensity={1}
@@ -31,9 +31,7 @@ const Lights = () => {
           shadow-camera-right={10}
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
-        /> */}
-        {/* Spotlight Large overhead light */}
-        <spotLight intensity={1} position={[1000, 0, 0]} castShadow />
+        />
       </>
     );
 };
