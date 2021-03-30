@@ -54,7 +54,7 @@ export class About extends Component {
                     </div>
                     <div className="text">
                         <p>
-                            B.A.R.S or Big *** Rocks in Space is my honours project application aiming to compile sources 
+                            B.A.R.S is my honours project application aiming to compile sources 
                             of near-earth object data, as well as subsequent processing steps in order to provide 
                             visualisations.
                         </p><br/>

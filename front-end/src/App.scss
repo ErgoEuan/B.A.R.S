@@ -2,7 +2,8 @@ $colors: (
   primary: #ffffff,
   accent: #549fc2,
   bg: #232835,
-  nav: #1d2027
+  nav: #1d2027,
+  nav-element: #1d2027e8,
 );
 @function color($color-name){
   @return map-get($colors, $color-name)
@@ -44,7 +45,6 @@ body::-webkit-scrollbar {
   overflow: hidden;
   background-color: color(nav);
   padding: 14px 16px;
-
 
   .nav-centered {
     float: none;
@@ -129,6 +129,9 @@ body::-webkit-scrollbar {
   position: relative;
   transform: translate(-50%, -50%);
   opacity: 0.85;
+  background: color(nav-element);
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .neo-data:hover {
@@ -137,29 +140,59 @@ body::-webkit-scrollbar {
 
 .neo-data-name {
   cursor:pointer;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .neo-data-expand {
-  color: rgb(255, 255, 255);
+  color: color(primary);
   transition-duration: 0.3s;
   max-height:0;
   overflow:hidden;
   position:absolute;
-  background: rgba(0,0,0,0.7);
+  background: color(nav-element);
   padding-left:10px;
   padding-right:10px;
   left: -200px;
   width: 400px;
+  border-radius: 10px;
   transform: translateY(-50%);
 
   .neo-title {
     text-align: center;
+    padding: 10px 0px;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: color(primary);
   }
 
   .neo-info {
     padding: 5px;
     text-align: left;
   }
+
+  .neo-info-alertH {
+    padding: 5px;
+    text-align: center;
+    color: #ff3d33;
+  }
+
+  .neo-info-alertS {
+    padding: 5px;
+    text-align: center;
+    color: #38c7ff;
+  }
+
+  a {
+    color: color(accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: color(primary);
+  }
+
 
   &.isActive {
     max-height: 20em;
@@ -173,6 +206,7 @@ body::-webkit-scrollbar {
   color:#ffffff;
   top:0;
   right:0;
+  padding: 3px 7px;
   cursor:pointer;
 }
 
@@ -218,6 +252,10 @@ body::-webkit-scrollbar {
     font-weight: lighter;
     font-size: 17px;
     color: color(primary);
+
+    strong {
+      color: color(accent);
+    }
   }
 
   .links {

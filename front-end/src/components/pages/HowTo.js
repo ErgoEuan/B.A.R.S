@@ -33,6 +33,30 @@ export class HowTo extends Component {
                         </p>
                     </div>
                     <div className="small-title">
+                        <h1>Glossary</h1>
+                    </div>
+                    <div className="text">
+                        <p>
+                            <strong>Apsolute magitude: </strong>Magnitude at 1 au from Sun and observer
+                        </p>
+                        <p>
+                            <strong>au: </strong>Astronomical unit is a unit of length, roughly the distance from 
+                            Earth to the Sun.
+                        </p>
+                        <p>
+                            <strong style={{color: '#ff3d33'}}>Red Name: </strong>Is Potentially Hazardous.
+                        </p>
+                        <p>
+                            <strong style={{color: '#38c7ff'}}>Blue Name: </strong>Is a Sentry Object, more information 
+                            available on sentry objects 
+                            <a 
+                                href="https://cneos.jpl.nasa.gov/sentry/"
+                                rel="noopener noreferrer" 
+                                target="_blank"
+                            > (HERE)</a>
+                        </p>
+                    </div>
+                    <div className="small-title">
                         <h1>Troubleshooting</h1>
                     </div>
                     <div className="text">
