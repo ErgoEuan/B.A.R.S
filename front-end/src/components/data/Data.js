@@ -38,7 +38,7 @@ const Lights = () => {
 
 const Earth = () => {
     const mesh = useRef(null);
-    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += -0.0002));
+    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += -0.00015));
     return (
         <group position={[0, 0, 0]}>
             <mesh position={[0, -5.5, 110]} ref={mesh}>
@@ -112,9 +112,9 @@ export default class Data extends Component {
                 <div>
                     <div className="canvas">
                         <Canvas 
-                            shadowMap 
-                            colorManagement 
-                            camera={{position: [0, 0, 120], fov: 15}}>
+                        shadowMap 
+                        colorManagement 
+                        camera={{position: [0, 0, 120], fov: 15}}>
                             <Lights/>
                             <Suspense fallback={null}>
                                 <Earth/>
