@@ -1,7 +1,8 @@
 $colors: (
   primary: #ffffff,
   accent: #549fc2,
-  bg: #1d2027
+  bg: #232835,
+  nav: #1d2027
 );
 @function color($color-name){
   @return map-get($colors, $color-name)
@@ -33,16 +34,6 @@ body::-webkit-scrollbar {
   display: none;
 } 
 
-.container { 
-  margin: 40px;
-  padding: 30px;
-  height: 100%;
-  border-style: solid;
-  border-width: 8px;
-  border-radius: 40px;
-  color: color(accent); 
-}
-
 .canvas {
   width: 100%;
   height: 90.5vh;
@@ -51,7 +42,7 @@ body::-webkit-scrollbar {
 .nav {
   // position: relative;
   overflow: hidden;
-  background-color: color(bg);
+  background-color: color(nav);
   padding: 14px 16px;
 
 
@@ -98,6 +89,17 @@ body::-webkit-scrollbar {
     font-size: 24px;
     font-weight: 900;
     letter-spacing: 3px;
+
+    a {
+      color: color(primary);
+      text-decoration: none;
+    }
+  }
+
+  .logo:hover {
+    a {
+      color: color(accent);
+    }
   }
 
   .btn {
@@ -172,4 +174,68 @@ body::-webkit-scrollbar {
   top:0;
   right:0;
   cursor:pointer;
+}
+
+.about, .how-to {
+  width: 100vw;
+  height: 90vh;
+  padding: 60px 10vw 60px 10vw;
+  position: relative;
+  overflow: hidden;
+
+  .container { 
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    // margin-bottom: 60px;
+    border-radius: 5px; 
+    background: color(nav);
+  }
+
+  .title {
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: color(primary);
+  }
+
+  .small-title {
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: color(primary);
+  }
+
+  .text {
+    text-align: left;
+    padding: 14px 16px;
+    font-weight: lighter;
+    font-size: 17px;
+    color: color(primary);
+  }
+
+  .links {
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: lighter;
+    font-size: 17px;
+    color: color(primary);
+  }
+
+  a {
+    color: color(primary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: color(accent);
+  }
+  
 }

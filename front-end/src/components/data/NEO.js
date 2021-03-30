@@ -36,7 +36,9 @@ const NEO = ({neo, count, amount}) => {
 
     //positioning y
     const iteratorY = count + 7; 
-    const y = ((iteratorY * (iteratorY/4.5))% 18)-4;
+    const y = ((iteratorY * (iteratorY/4.5))% 17)-3;
+
+    console.log(amount)
 
     //spin
     const mesh = useRef(null);

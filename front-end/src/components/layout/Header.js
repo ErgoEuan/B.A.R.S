@@ -33,10 +33,11 @@ export class Header extends Component {
         return (
             <div className="nav">
 
-                <div className="logo">B.A.R.S</div>
+                <div className="logo"><Link to="/">B.A.R.S</Link></div>
 
                 <div className="nav-centered">
-                    <div className="nav-link"><Link to="/HowTo">How It Works</Link></div>
+                    <div className="nav-link"><Link to="/App">App</Link></div>
+                    <div className="nav-link"><Link to="/">How It Works</Link></div>
                     <div className="nav-link"><Link to="/About">About</Link></div>
                 </div>
 

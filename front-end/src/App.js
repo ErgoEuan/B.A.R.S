@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/layout/Header';
 import Data from './components/data/Data';
-
-
+import HowTo from './components/pages/HowTo';
+import About from './components/pages/About';
 
 class App extends Component {
 
@@ -30,11 +30,17 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header currentDate={this.state.date} dateChange={this.dateChange}/>
-          <div style={{ backgroundImage: "url(/img/star.jpg)", backgroundSize: "cover"}}>
-            <Route path="/" render={props => (
+          <Route exact path="/App" render={props => (
+            <div style={{ backgroundImage: "url(/img/star.jpg)", backgroundSize: "cover"}}>
               <Data selectedDate={this.state.dateProcessed}/>
-            )} />
-          </div>
+            </div>
+          )} />
+          <Route exact path="/" render={props => (
+            <HowTo/>
+          )} />
+          <Route exact path="/About" render={props => (
+            <About/>
+          )} />
         </div>
       </Router>
     );
