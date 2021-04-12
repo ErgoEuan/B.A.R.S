@@ -88,7 +88,7 @@ const NEO = ({neo, count, amount}) => {
                                 Apsolute magitude: {neo.absolute_magnitude_h}<br/>
                                 Estimated diameter maximum: {neo.estimated_diameter.meters.estimated_diameter_max.toFixed(2)} meters<br/>
                                 Estimated diameter minimum: {neo.estimated_diameter.meters.estimated_diameter_min.toFixed(2)} meters<br/>
-                                NEO Refference ID: {neo.neo_reference_id}<br/>
+                                NEO Reference ID: {neo.neo_reference_id}<br/>
                                 <a 
                                     href={neo.nasa_jpl_url}
                                     rel="noopener noreferrer" 
