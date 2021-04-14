@@ -98,7 +98,7 @@ export default class Data extends Component {
             }
         }
 
-        let testDate = (currentData === 'Null') ? getCurrentDate() : currentData
+        let setDate = (currentData === 'Null') ? getCurrentDate() : currentData
 
         if (undefined === this.state.data.near_earth_objects) {
             return (
@@ -118,7 +118,7 @@ export default class Data extends Component {
                             <Lights/>
                             <Suspense fallback={null}>
                                 <Earth/>
-                                <NEOs neos={this.state.data.near_earth_objects[testDate]}/>
+                                <NEOs neos={this.state.data.near_earth_objects[setDate]}/>
                             </Suspense>
                         </Canvas>
                     </div>
